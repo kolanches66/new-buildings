@@ -28,13 +28,7 @@
 </head>
 <body>
 
-	<div id="navigation">
-		<nav>
-			<a class="link nav_link" href="/new_buildings/">главная</a>::<a 
-			class="link nav_link" href="#">каталог</a>::<a 
-			class="link nav_link" href="#">помощь</a>
-		</nav>
-	</div>
+	<?php require_once('parts/menu.php'); ?>
 
 	<div id="content" class="autorization">
 <?php	// нажали кнопку

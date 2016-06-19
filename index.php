@@ -1,6 +1,3 @@
-<?php
-	include('db_connect.php');
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,13 +7,7 @@
 </head>
 <body>
 
-	<div id="navigation">
-		<nav>
-			<a class="link nav_link" href="/new_buildings/">главная</a>::<a 
-			class="link nav_link" href="#">каталог</a>::<a 
-			class="link nav_link" href="#">помощь</a>
-		</nav>
-	</div>
+	<?php require_once('parts/menu.php'); ?>
 
 	<div id="content">
 		
@@ -25,6 +16,32 @@
 		</p>
 	
 	<?php
+		include('db_connect.php');
+		
+		/* if (!empty($_GET['id'])) {
+			// входные данные
+			$id = $_GET['id'];
+			$query = "SELECT `text` FROM `to_delete` WHERE id=?";
+			// создаем подготавливаемый запрос
+			if ($stmt = $mysqli->prepare($query)) {
+				// связываем параметры с метками 
+				$stmt->bind_param("i", $id);
+				// запускаем запрос
+				$stmt->execute();
+				// связываем переменные с результатами запроса
+				$stmt->bind_result($text);
+				// получаем значения
+				$stmt->fetch();
+				echo $id.' '.$text;
+				/// закрываем запрос
+				$stmt->close();
+			}
+
+		// закрываем соединение 
+		$mysqli->close();
+		}*/
+	
+	
 		$query = 'SELECT * from new_buildings';
 		if ($result = $mysqli->query($query)) {
 			echo "<table class='table_catalog'>
@@ -45,6 +62,7 @@
 			echo "</table>";
 			$result->free();
 		}
+		$mysqli->close();
 		?>
 	</div>
 
