@@ -9,23 +9,34 @@
 	<title>Новостройки: главная</title>
 </head>
 <body>
+
+	<div id="navigation">
+		<nav>
+			<a class="link nav_link" href="/new_buildings/">главная</a>::<a 
+			class="link nav_link" href="#">каталог</a>::<a 
+			class="link nav_link" href="#">помощь</a>
+		</nav>
+	</div>
+
 	<div id="content">
 		
 		<p class="p_submit">
-		<input class="button_submit" type="button" value="Добавить объект" onclick="location.href='add.php'"/>
+		<input class="button green" type="button" value="Добавить объект" onclick="location.href='add.php'"/>
 		</p>
 	
 	<?php
 		$query = 'SELECT * from new_buildings';
 		if ($result = $mysqli->query($query)) {
-			echo "<table><th class='table_header'>id</th>
-			<th class='table_header'>название</th>
-			<th class='table_header'>район\область\регион</th>";
+			echo "<table class='table_catalog'><tr><th>ID</th>
+			<th class='table_header_name'>Название</th>
+			<th class='table_header_location'>Район\область\регион</th>
+			<th>Описание</th></tr>";
 			while ($row = $result->fetch_assoc()) {
 				echo "<tr>
 				<td class='table_id'>".$row['id']."</td>
 				<td class='table_name'>".$row['name']."</td>
 				<td class='table_location'>".$row['location']."</td>
+				<td class='table_description'>".nl2br($row['short_description'])."</td>
 				</tr>";
 			}
 			echo "</table>";
