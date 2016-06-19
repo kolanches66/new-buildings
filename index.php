@@ -27,10 +27,13 @@
 	<?php
 		$query = 'SELECT * from new_buildings';
 		if ($result = $mysqli->query($query)) {
-			echo "<table class='table_catalog'><tr><th>ID</th>
-			<th class='table_header_name'>Название</th>
-			<th class='table_header_location'>Район\область\регион</th>
-			<th>Описание</th></tr>";
+			echo "<table class='table_catalog'>
+			<tr>
+			<th>ID</th>
+			<th>Название</th>
+			<th>Район\область\регион</th>
+			<th>Описание</th>
+			</tr>";
 			while ($row = $result->fetch_assoc()) {
 				echo "<tr>
 				<td class='table_id'>".$row['id']."</td>

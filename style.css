@@ -1,5 +1,5 @@
 ﻿* {
-	background-color: white;
+	background-color: transparent;
 	margin: 0;
 	padding: 0;
 }
@@ -75,7 +75,7 @@ body {
 	padding: 8px 16px;
 	height: 32px;
 	background-color: #bbccee;
-	transition: background 0.25s;
+	transition: background 0.75s;
 }
 .button.submit {
 	border: 0;
@@ -94,7 +94,7 @@ body {
 	text-decoration: underline;
 }
 .button.green { background-color: #48b208; color: #fff; }
-.button.green:hover { background-color: green; }
+.button.green:hover { background-color: #6cc537; }
 
 .textbox {
 	font-family: 'Courer New';
@@ -102,10 +102,16 @@ body {
 	height: 32px;
 	padding-left: 4px;
 	padding-right: 4px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
 }
-.textbox.object_name { width: 512px; }
-.textbox.object_location { width: 512px; }
+.textbox.object_name { width: 504px; }
+.textbox.object_location { width: 504px; }
 
+.textarea {
+	border-radius: 5px;
+	border: 1px solid #ccc;
+}
 .textarea.object_description {
 	font-size: 16px;
 	height: 128px;
@@ -118,7 +124,7 @@ body {
 	background-color: #cbe5e8;
 	font-family: 'Trebuchet MS';
 	font-style: italic;
-	padding: 0px;
+	border-radius: 5px;
 }
 
 .table_catalog {
@@ -126,7 +132,11 @@ body {
 }
 .table_header_name{ width: 96px; }
 .table_header_location{ width: 216px; }
-.table_catalog th:hover {
+.table_catalog tr {
+	background-color: red;
+}
+.table_catalog tr:hover {
+	color: red;
 	background-color: green;
 }
 .table_catalog th, .table_catalog td {
@@ -144,7 +154,7 @@ body {
 	padding-bottom: 10px;
 }
 .table_catalog td {
-	/*background-color: #f2f2f2;*/
+	background-color: #f2f2f2;
 	font-size: 18px;
 	padding-top: 8px;
 	padding-bottom: 8px;

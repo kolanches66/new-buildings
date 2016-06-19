@@ -1,5 +1,24 @@
 <?php
+	session_start();
 	include('db_connect.php');
+	// если пользователь ввел данные
+	if (!empty($_POST['login']) && !empty($_POST['password'])) {
+		// если они оказались правильными
+		if ($_POST['login'] == "login" && $_POST['password'] == "password") {
+			// то записываем пометку в сессию
+			$_SESSION['login'] = 'login';
+		}
+	}
+	if (empty($_SESSION['login'])) {
+	?>
+		<form action="login.php" method="POST">
+			<p class="p_form"><input class="textbox" name="login" type="text"></p>
+			<p class="p_form"><input class="textbox" name="password" type="password"></p>
+			<p class="p_form"><input class="button submit" name="submit" type="submit"></p>
+		</form>
+	<?php
+	}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -10,23 +29,7 @@
 </head>
 <body>
 	<div id="content">
-	<?php
-		$query = 'SELECT * from new_buildings';
-		if ($result = $mysqli->query($query)) {
-			echo "<table><th class='table_header'>id</th>
-			<th class='table_header'>название</th>
-			<th class='table_header'>район\область\регион</th>";
-			while ($row = $result->fetch_assoc()) {
-				echo "<tr>
-				<td class='table_id'>".$row['id']."</td>
-				<td class='table_name'>".$row['name']."</td>
-				<td class='table_location'>".$row['location']."</td>
-				</tr>";
-			}
-			echo "</table>";
-			$result->free();
-		}
-		?>
+		
 	</div>
 
 </body>
