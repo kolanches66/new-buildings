@@ -4,10 +4,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
 	<link rel="stylesheet" href="style.css">
+	<title>Новостройки: главная</title>
 </head>
 <body>
 	<div id="content">
+		
+		<p class="p_submit">
+		<input class="button_submit" type="button" value="Добавить объект" onclick="location.href='add.php'"/>
+		</p>
+	
 	<?php
 		$query = 'SELECT * from new_buildings';
 		if ($result = $mysqli->query($query)) {

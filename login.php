@@ -6,7 +6,7 @@
 <head>
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="style.css">
-	<title>Новостройки::авторизация</title>
+	<title>Новостройки: авторизация</title>
 </head>
 <body>
 	<div id="content">

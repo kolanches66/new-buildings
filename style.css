@@ -1,4 +1,5 @@
 ﻿* {
+	background-color: white;
 	margin: 0;
 	padding: 0;
 }
@@ -30,27 +31,79 @@ a:active {
 }
 
 #content {
-	margin: 16px 16px;
+	margin: 32px 32px;
+}
+.content_header {
+	font-family: Verdana;
+	font-size: 26px;
+	font-weight: normal;
+	margin-bottom: 16px;
+}
+.p_form {
+	margin-bottom: 16px;
 }
 .p_submit {
 	margin-bottom: 16px;
 }
-.button_submit {
+/*.button_submit {
 	border: 0;
 	background: #bbccee;
 	padding: 8px 16px;
+	height: 32px;
+	transition: 0.75s;
+}*/
+.button_submit {
+	border: 0;
+	padding: 8px 16px;
+	height: 32px;
+	background-color: #bbccee;
+	transition: background 0.25s;
+}
+.button_submit:hover {
+	cursor: pointer;
+	border: 0;
+	background: #4897a0;
+	color: #fff;
+	padding: 8px 16px;
+	height: 32px;
+	text-decoration: underline;
+}
+
+.textbox {
+	font-family: 'Courer New';
+	font-size: 20px;
+	height: 32px;
+	padding-left: 4px;
+	padding-right: 4px;
+}
+.textbox.object_name { width: 512px; }
+.textbox.object_location { width: 512px; }
+
+.textarea.object_description {
+	font-size: 16px;
+	height: 128px;
+	resize: none;
+	width: 512px;
+}
+
+.file_block {
+	width: 512px;
+	background-color: #cbe5e8;
+	font-family: 'Trebuchet MS';
+	font-style: italic;
+	padding: 0px;
+}
+
+th, td {
+	padding-left: 16px;
+	padding-right: 16px;
 }
 .table_header {
 	background-color: #aaeeaa;
 	font-size: 18px;
 	font-weight: normal;
 	letter-spacing: 1px;
-	padding: 8px 0;
 	text-align: left;
 	text-transform: uppercase;
 	
 }
-.table_id { width: 32px; }
-.table_name{ width: 128px; }
-.table_location{ width: 288px; }
-.table_description{ width: 256px; }
