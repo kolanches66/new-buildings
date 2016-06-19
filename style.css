@@ -11,6 +11,28 @@ body {
 	font-family: Times New Roman;
 }
 
+.message {
+	margin-bottom: 16px;
+}
+.message.error {
+	background-image: url('img/error_icon_small.png');
+	background-repeat: no-repeat;
+	background-color: #511e66;
+	color: #fff;
+	height: 26px;
+	padding-left: 36px;
+	padding-top: 6px;
+}
+.message.info {
+	background-image: url('img/message_icon_small.png');
+	background-repeat: no-repeat;
+	background-color: #0098b8;
+	color: #fff;
+	height: 26px;
+	padding-left: 36px;
+	padding-top: 6px;
+}
+
 #navigation {
 	margin: 16px 16px;
 }
@@ -56,6 +78,9 @@ body {
 }
 #content {
 	margin: 32px 32px;
+}
+#content.autorization {
+	width: 400px;
 }
 .p_form {
 	margin-bottom: 16px;
@@ -105,6 +130,7 @@ body {
 	border-radius: 5px;
 	border: 1px solid #ccc;
 }
+.textbox.autorization { width: 296px; }
 .textbox.object_name { width: 504px; }
 .textbox.object_location { width: 504px; }
 
