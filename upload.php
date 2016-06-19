@@ -1,15 +1,15 @@
-<?php
-	$uploaddir = '/uploads/';
+п»ї<?php
+	$uploaddir = '/wamp/www/new_buildings/uploads/';
 	$uploadfile = $uploaddir . basename($_FILES['userfile']['name']);
 
 	echo '<pre>';
 	if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
-		echo "Файл корректен и был успешно загружен.\n";
+		echo "Р¤Р°Р№Р» РєРѕСЂСЂРµРєС‚РµРЅ Рё Р±С‹Р» СѓСЃРїРµС€РЅРѕ Р·Р°РіСЂСѓР¶РµРЅ.\n";
 	} else {
-		echo "Возможная атака с помощью файловой загрузки!\n";
+		echo "Р’РѕР·РјРѕР¶РЅР°СЏ Р°С‚Р°РєР° СЃ РїРѕРјРѕС‰СЊСЋ С„Р°Р№Р»РѕРІРѕР№ Р·Р°РіСЂСѓР·РєРё!\n";
 	}
 
-	echo 'Некоторая отладочная информация:';
+	echo 'РќРµРєРѕС‚РѕСЂР°СЏ РѕС‚Р»Р°РґРѕС‡РЅР°СЏ РёРЅС„РѕСЂРјР°С†РёСЏ:';
 	print_r($_FILES);
 	echo '</pre>';
 ?>

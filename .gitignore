@@ -1,4 +1,8 @@
 # ignore psd files,
 *.psd
 # ignore uploaded files
-uploads/
+/uploads/
+# ignore composer files
+/vendor/
+# ignore
+/trash/

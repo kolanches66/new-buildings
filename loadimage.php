@@ -10,11 +10,8 @@
 <body>
 	<div id="content">
 		<!-- Тип кодирования данных, enctype, ДОЛЖЕН БЫТЬ указан ИМЕННО так -->
-		<form enctype="multipart/form-data" action="__URL__" method="POST">
-			<!-- Поле MAX_FILE_SIZE должно быть указано до поля загрузки файла -->
-			<input type="hidden" name="MAX_FILE_SIZE" value="30000" />
-			<!-- Название элемента input определяет имя в массиве $_FILES -->
-			<p class="p_submit">Отправить этот файл:</p>
+		<form enctype="multipart/form-data" action="upload.php" method="POST">
+			<p class="p_submit">Отправка файла</p>
 			<p class="p_submit"><input name="userfile" type="file" /></p>
 			<p class="p_submit"><input class="button_submit" type="submit" value="Отправить файл" /></p>
 		</form>

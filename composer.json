@@ -1,0 +1,11 @@
+{
+    "name": "kolanches66/new_buildings",
+    "description": "Catalog of the new buildings in Yekaterinburg",
+    "license": "MIT",
+    "require": {
+        "smarty/smarty": "^3.1"
+    },
+    "require-dev": {
+        "maximebf/debugbar": "^1.12"
+    }
+}
