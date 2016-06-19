@@ -1,0 +1,4 @@
+# ignore psd files,
+*.psd
+# ignore uploaded files
+uploads/

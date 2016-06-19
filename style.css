@@ -1,0 +1,56 @@
+﻿* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: #fafafa;
+	background-position: right top;
+	background-repeat: no-repeat;
+	font-family: Times New Roman;
+}
+
+
+/*   a:link,  a:visited,  a:hover,  a:active   */
+a, a:visited {
+	background-color: #00dd00;
+	color: #004400;
+	padding: 10px 20px;
+	text-decoration: underline;
+}
+
+a:hover {
+	background-color: #00bb00;
+	color: white;
+}
+
+/* when you have clicked */
+a:active {
+	color: black;
+}
+
+#content {
+	margin: 16px 16px;
+}
+.p_submit {
+	margin-bottom: 16px;
+}
+.button_submit {
+	border: 0;
+	background: #bbccee;
+	padding: 8px 16px;
+}
+.table_header {
+	background-color: #aaeeaa;
+	font-size: 18px;
+	font-weight: normal;
+	letter-spacing: 1px;
+	padding: 8px 0;
+	text-align: left;
+	text-transform: uppercase;
+	
+}
+.table_id { width: 32px; }
+.table_name{ width: 128px; }
+.table_location{ width: 288px; }
+.table_description{ width: 256px; }
