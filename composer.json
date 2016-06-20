@@ -3,7 +3,8 @@
     "description": "Catalog of the new buildings in Yekaterinburg",
     "license": "MIT",
     "require": {
-        "smarty/smarty": "^3.1"
+        "smarty/smarty": "^3.1",
+		"respect/validation": "*"
     },
     "require-dev": {
         "maximebf/debugbar": "^1.12"

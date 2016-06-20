@@ -4,7 +4,8 @@
 	// если пользователь решил уйти
 	if (isset($_GET['action']) && $_GET['action'] == "logout") {
 		// только если сессия существует, уничтожаем её
-		if (isset($_SESSION['login'])) session_unset ($_SESSION['login']);
+		if (isset($_SESSION['login'])) 
+                    session_unset($_SESSION['login']);
 		// но в любом случае кидаем юзера обратно на login.php
 		header('Location: login.php');
 	}
@@ -12,7 +13,9 @@
 	// если пользователь ввел данные
 	if (!empty($_POST['login']) && !empty($_POST['password'])) {
 		// если они оказались правильными
-		if ($_POST['login'] == "login" && $_POST['password'] == "password") {
+		if ($_POST['login'] == "login" && 
+                    $_POST['password'] == "password") 
+                {
 			// то записываем пометку в сессию
 			$_SESSION['login'] = 'login';
 		}
