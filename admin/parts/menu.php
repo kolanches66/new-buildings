@@ -1,6 +1,6 @@
 <?php 
 function construct_menu() {
-	$page = $_SERVER['PHP_SELF']; ?>
+    $page = $_SERVER['PHP_SELF']; ?>
     <div id="navigation">
             <nav>
                 <a
@@ -12,4 +12,3 @@ function construct_menu() {
     <?php
 }
 ?>
-}

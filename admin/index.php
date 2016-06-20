@@ -38,11 +38,20 @@ if (!empty($_SESSION['login'])) {
     </head>
     <body>
         <div id="content_pre">
-            <?php require_once('parts/menu.php'); ?>
+            <?php 
+            // строим меню
+            require_once('parts/menu.php'); 
+            construct_menu();
+            ?>
         </div>
         
         <div id="content">    
-        <?php
+            <p class="p_submit">
+                <button class="button green" onclick="location.href='add.php'">
+                Добавить объект
+                </button>
+            </p>
+            <?php
             $query = 'SELECT * from `buildings`';
             if ($result = $mysqli->query($query)) {
                     echo "<table class='table_catalog'>
@@ -55,8 +64,8 @@ if (!empty($_SESSION['login'])) {
                     while ($row = $result->fetch_assoc()) {
                             echo "<tr>
                             <td class='table_id'>
-                                    <a href='edit.php?id=".$row['id']."'>редактировать</a><br>
-                                    <a href='index.php?action=delete&id=".$row['id']."'>удалить</a>
+                                    <a class='link' href='edit.php?id=".$row['id']."'>редактировать</a><br>
+                                    <a class='link' href='index.php?action=delete&id=".$row['id']."'>удалить</a>
                             </td>
                             <td class='table_name'>".$row['name']."</td>
                             <td class='table_location'>".$row['location']."</td>

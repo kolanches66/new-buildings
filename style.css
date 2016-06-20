@@ -4,7 +4,6 @@
 	padding: 0;
 }
 
-
 body {
 	background-color: #fafafa;
 	background-position: right top;
@@ -42,6 +41,7 @@ body {
 .link, .link:visited {
 	color: #66aa28;
 	text-decoration: underline;
+        transition: 0.35s;
 }
 .link.nav_link, .link.nav_link:visited {
 	margin: 16px 16px;
@@ -89,34 +89,25 @@ body {
 .p_submit {
 	margin-bottom: 16px;
 }
-/*.button_submit {
-	border: 0;
-	background: #bbccee;
-	padding: 8px 16px;
-	height: 32px;
-	transition: 0.75s;
-}*/
 .button {
-	border: 0;
-	padding: 8px 16px;
-	height: 32px;
-	background-color: #bbccee;
-	transition: background 0.75s;
-}
-.button.submit {
 	border: 0;
 	padding: 8px 16px;
 	height: 32px;
 	background-color: #bbccee;
 	transition: background 0.25s;
 }
-.button:hover {
-	cursor: pointer;
+.button.submit {
 	border: 0;
-	background: #4897a0;
-	color: #fff;
 	padding: 8px 16px;
 	height: 32px;
+	background-color: #bbccee;
+	transition: background 0.35s;
+}
+.button:hover {
+	background-color: #4897a0;
+	border: 0;
+	color: #fff;
+        cursor: pointer;
 	text-decoration: underline;
 }
 .button.green { background-color: #48b208; color: #fff; }
