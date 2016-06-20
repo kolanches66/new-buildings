@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<link rel="stylesheet" href="style.css">
-	<title>Новостройки: главная</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../style.css">
+    <title>Новостройки: главная</title>
 </head>
 <body>
-
 	<?php require_once('parts/menu.php'); ?>
 
 	<div id="content">

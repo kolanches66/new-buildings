@@ -1,91 +1,74 @@
 <?php
 session_start();
-// БЛОК ОБРАБОТКИ
-// осуществляем проверку данных для авторизации
-if (isset($_POST['button_enter']) && empty($_SESSION['login'])) {
-    // если юзер ввёл не все данные
-    if (empty($_POST['login']) || empty($_POST['password'])) {
-        $message_type = "info";
-        $message_text = "Введите и логин, и пароль";
-    }
-    // или всё-таки ввёл все
-    else {
-        // проверяем их на правильность
-        $error = false;
-            // если они оказались правильными
-            if ($_POST['login'] == "login" && $_POST['password'] == "password") 
-            {
-		// то делаем пометку в сессии
-		$_SESSION['login'] = 'login';
-                // чтобы не было повторной отправки формы при F5
-                header("Location: index.php");
-            }
-            // а если неправильными, то -- ошибка
-            else {
-                $message_type = "error";
-                $message_text = "Ошибка! Логин или пароль введены неверно.";
-            }
-    }
-}
-?>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="../style.css">
-    <title>Новостройки: панель управления</title>
-</head>
-<body>
-
-<?php
-// если после всего этого пользователь зашёл, то
+// только для авторизованных пользователей
 if (!empty($_SESSION['login'])) {
-    // если он решил выйти
-    if (isset($_GET['action']) && $_GET['action'] == "logout") {
-	// уничтожаем нашу сессию
-	session_unset ($_SESSION['login']);
-        header("Location: index.php");
-    } 
-    // отображаем интерфейс авторизованного пользователя
-    ?>
-    <div id="content_pre">
-        <?php require $_SERVER["DOCUMENT_ROOT"].'/new_buildings/parts/menu.php'; ?>
-    </div>
-    
-    <div id="content">
-        <a href='index.php?action=logout'>Выход</a>
-    </div>
-    
-    <?php
-    /*include('../db_connect.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/new_buildings/db_connect.php');
+    // подключение удалось; иначе -- кидаем отсюда пользователя
     if (db_connect()) {
-        <?php require $_SERVER["DOCUMENT_ROOT"].'/new_buildings/parts/menu.php'; ?>
-    }*/
+        // БЛОК ОБРАБОТКИ
+        // если задано действие "удалить"
+        if (!empty($_GET['action']) && $_GET['action'] == 'delete') {
+            // если задан id записи
+            if (!empty($_GET['id'])) {
+                $id = $_GET['id'];
+                $query = "DELETE from buildings WHERE id=?";
+                // выполняем запрос
+                if ($stmtDelete = $mysqli->prepare($query)) {
+                    $stmtDelete->bind_param("i",  $id);
+                    $stmtDelete->execute();
+                    echo $stmtDelete->error;
+                    $stmtDelete->close();
+                }
+                // если запрос не удался
+                else {
+                    header("refresh: 3; url=index.php");
+                    echo 'Не получилось удалить запись.';
+                }
+            }  //  (!empty($_GET['id']))
+        } //  (!empty($_GET['action']) && $_GET['action'] == 'delete')
+        
+    // БЛОК ИНТЕРФЕЙСА
+    ?>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../style.css">
+        <title>Новостройки: панель управления</title>
+    </head>
+    <body>
+        <div id="content_pre">
+            <?php require_once('parts/menu.php'); ?>
+        </div>
+        
+        <div id="content">    
+        <?php
+            $query = 'SELECT * from `buildings`';
+            if ($result = $mysqli->query($query)) {
+                    echo "<table class='table_catalog'>
+                    <tr>
+                    <th></th>
+                    <th>Название</th>
+                    <th>Район\область\регион</th>
+                    <th>Описание</th>
+                    </tr>";
+                    while ($row = $result->fetch_assoc()) {
+                            echo "<tr>
+                            <td class='table_id'>
+                                    <a href='edit.php?id=".$row['id']."'>редактировать</a><br>
+                                    <a href='index.php?action=delete&id=".$row['id']."'>удалить</a>
+                            </td>
+                            <td class='table_name'>".$row['name']."</td>
+                            <td class='table_location'>".$row['location']."</td>
+                            <td class='table_description'>".nl2br($row['short_description'])."</td>
+                            </tr>";
+                    }
+                    echo "</table></div>";
+                    $result->free();
+            }
+            else echo 'error';
+            $mysqli->close();
+    }
 }
-
-// а если не зашёл, то
-else {  ?>
-    <div id="content_pre">
-        <h1 class='content_header'>Авторизация</h1>
-    </div>
-    
-    <div id="content" class="autorization">
-        <?php	
-        // вывод сообщений об ошибке, если они есть
-        if (!empty($message_type) && !empty($message_text)) {
-            echo '<div class="message '.$message_type.'">'.$message_text.'</div>';
-        }
-        ?>
-        <form action="" method="POST">
-            <p class="p_form"><input class="textbox autorization" name="login" type="text"></p>
-            <p class="p_form"><input class="textbox autorization" name="password" type="password"></p>
-            <p class="p_form"><input class="button submit" name="button_enter" type="submit" value="Войти"></p>
-        </form>
-    </div>
-<?php
-}
-?>
-
-</body>
-<html>
+// если юзер не авторизован
+else header("Location: login.php");
