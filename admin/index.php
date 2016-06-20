@@ -54,7 +54,7 @@ if (!empty($_SESSION['login'])) {
             <?php
             $query = 'SELECT * from `buildings`';
             if ($result = $mysqli->query($query)) {
-                    echo "<table class='table_catalog'>
+                    echo "<table class='table'>
                     <tr>
                     <th></th>
                     <th>Название</th>
@@ -64,15 +64,16 @@ if (!empty($_SESSION['login'])) {
                     while ($row = $result->fetch_assoc()) {
                             echo "<tr>
                             <td class='table_id'>
-                                    <a class='link' href='edit.php?id=".$row['id']."'>редактировать</a><br>
-                                    <a class='link' href='index.php?action=delete&id=".$row['id']."'>удалить</a>
+                                <a class='link' href='edit.php?id=".$row['id']."'>редактировать</a><br>
+                                <a class='link' href='index.php?action=delete&id=".$row['id']."'>удалить</a>
                             </td>
                             <td class='table_name'>".$row['name']."</td>
                             <td class='table_location'>".$row['location']."</td>
                             <td class='table_description'>".nl2br($row['short_description'])."</td>
                             </tr>";
                     }
-                    echo "</table></div>";
+                    echo "</table></div>"
+                    . "</body></html>";
                     $result->free();
             }
             else echo 'error';

@@ -36,31 +36,36 @@ body {
 #navigation {
 	margin: 16px 16px;
 }
-
 /*   a:link,  a:visited,  a:hover,  a:active   */
 .link, .link:visited {
 	color: #66aa28;
 	text-decoration: underline;
-        transition: 0.35s;
+    transition: color 0.35s;
 }
-.link.nav_link, .link.nav_link:visited {
-	margin: 16px 16px;
-	font-size: 18px;
-}
-
+    .link.nav_link, .link.nav_link:visited {
+            margin: 16px 16px;
+            font-size: 18px;
+    }
 .link:hover {
 	color: #6600ff;
 }
-
-/* when you have clicked */
 .link:active {
 	color: black;
 }
+
 #content_pre {
 	margin-left: 16px;
 	margin-top: 32px;
 }
-.content_header {
+
+#content {
+	margin: 32px 32px;
+}
+#content.autorization {
+	width: 400px;
+}
+
+#content .header {
 	margin-bottom: 16px;
 	padding: 4px 16px;
 	font-family: Verdana;
@@ -76,12 +81,6 @@ body {
 	background: -webkit-linear-gradient(left,  rgba(186,255,76,1) 0%,rgba(162,216,0,1) 100%); /* Chrome10-25,Safari5.1-6 */
 	background: linear-gradient(to right,  rgba(186,255,76,1) 0%,rgba(162,216,0,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#baff4c', endColorstr='#a2d800',GradientType=1 ); /* IE6-9 */
-}
-#content {
-	margin: 32px 32px;
-}
-#content.autorization {
-	width: 400px;
 }
 .p_form {
 	margin-bottom: 16px;
@@ -120,8 +119,14 @@ body {
 	padding-left: 4px;
 	padding-right: 4px;
 	border-radius: 5px;
-	border: 1px solid #ccc;
+	border: 3px solid #ccc;
+        transition: 2s;
 }
+input[type=text]:focus {
+    border: 3px solid #555;
+    outline: none;
+}
+.textbox.big { width: 384px; }
 .textbox.autorization { width: 296px; }
 .textbox.object_name { width: 504px; }
 .textbox.object_location { width: 504px; }
@@ -129,6 +134,14 @@ body {
 .textarea {
 	border-radius: 5px;
 	border: 1px solid #ccc;
+}
+.textarea.big {
+        width: 384px;
+        height: 128px;
+}
+.textarea.enormous {
+        width: 384px;
+        height: 256px;
 }
 .textarea.object_description {
 	font-size: 16px;
@@ -145,23 +158,21 @@ body {
 	border-radius: 5px;
 }
 
-.table_catalog {
-	border-spacing: 0;
-}
+.table { border-spacing: 0; }
 .table_header_name{ width: 96px; }
 .table_header_location{ width: 216px; }
 .table_catalog tr {
 	background-color: red;
 }
-.table_catalog tr:hover {
+.table tr:hover {
 	color: red;
 	background-color: green;
 }
-.table_catalog th, .table_catalog td {
+.table th, .table td {
 	padding-left: 16px;
 	padding-right: 16px;
 }
-.table_catalog th {
+.table th {
 	background-color: #48b208;
 	color: #fff;
 	font-family: 'Verdana';
@@ -171,7 +182,7 @@ body {
 	padding-top: 5px;
 	padding-bottom: 10px;
 }
-.table_catalog td {
+.table td {
 	background-color: #f2f2f2;
 	font-size: 18px;
 	padding-top: 8px;
