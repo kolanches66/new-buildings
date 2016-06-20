@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Composer demo</title>
+</head>
+<body>
+	<table class='table'>
+		{foreach name=foo from=$buildings item=building}
+		
+		{if $smarty.foreach.foo.index % 1 == 0}
+			<tr></tr>
+		{/if}
+		
+			<td>{$building.name}</td>
+			<td>{$building.location}</td>
+			<td>{$building.short_description}</td>
+		
+		{/foreach}    
+	</table>
+</body>
+</html>

@@ -2,7 +2,7 @@
 session_start();
 // БЛОК ОБРАБОТКИ
 // осуществляем проверку данных для авторизации
-if (isset($_POST['button_enter']) && empty($_SESSION['login'])) {
+if (isset($_POST['btn_enter']) && empty($_SESSION['login'])) {
     // если юзер ввёл не все данные
     if (empty($_POST['login']) || empty($_POST['password'])) {
         $message_type = "info";
@@ -78,11 +78,9 @@ if (!empty($_SESSION['login'])) {
 
 // а если не зашёл, то
 else {  ?>
-    <div id="content_pre">
-        <h1 class='content_header'>Авторизация</h1>
-    </div>
-    
-    <div id="content" class="autorization">
+	<div id="main-wrapper">
+		<h1 class='header'>Авторизация</h1>
+		<div id="content">
         <?php	
         // вывод сообщений об ошибке, если они есть
         if (!empty($message_type) && !empty($message_text)) {
@@ -90,9 +88,15 @@ else {  ?>
         }
         ?>
         <form action="" method="POST">
-            <p class="p_form"><input class="textbox autorization" name="login" type="text"></p>
-            <p class="p_form"><input class="textbox autorization" name="password" type="password"></p>
-            <p class="p_form"><input class="button submit" name="button_enter" type="submit" value="Войти"></p>
+            <p class="p_form"><label for='login'>Логин</label><br>
+			<input class="textbox big" name="login" type="text"></p>
+			
+            <p class="p_form"><label for='login'>Пароль</label><br>
+			<input class="textbox big" name="password" type="password"></p>
+			
+            <p class="p_form">
+			<button class="button green" name="btn_enter" type="submit">Войти</button>
+			</p>
         </form>
     </div>
 <?php

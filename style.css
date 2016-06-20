@@ -33,14 +33,15 @@ body {
 	padding-top: 6px;
 }
 
+#top-wrapper {}
 #navigation {
-	margin: 16px 16px;
+	margin: 32px 16px;
 }
 /*   a:link,  a:visited,  a:hover,  a:active   */
 .link, .link:visited {
 	color: #66aa28;
 	text-decoration: underline;
-    transition: color 0.35s;
+        /*transition: color 0.35s;*/
 }
     .link.nav_link, .link.nav_link:visited {
             margin: 16px 16px;
@@ -53,11 +54,7 @@ body {
 	color: black;
 }
 
-#content_pre {
-	margin-left: 16px;
-	margin-top: 32px;
-}
-
+#main-wrapper {}
 #content {
 	margin: 32px 32px;
 }
@@ -65,14 +62,13 @@ body {
 	width: 400px;
 }
 
-#content .header {
+.header {
 	margin-bottom: 16px;
-	padding: 4px 16px;
+	padding: 4px 32px;
 	font-family: Verdana;
 	font-size: 26px;
 	font-weight: normal;
 	background-color: #baff4c;
-	border-radius: 7px 0 0 7px;
 	color: #111;
 	
 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#baff4c+0,a2d800+100 */
@@ -93,7 +89,7 @@ body {
 	padding: 8px 16px;
 	height: 32px;
 	background-color: #bbccee;
-	transition: background 0.25s;
+	/*transition: background 0.25s;*/
 }
 .button.submit {
 	border: 0;
@@ -112,19 +108,17 @@ body {
 .button.green { background-color: #48b208; color: #fff; }
 .button.green:hover { background-color: #6cc537; }
 
+.textbox, .textarea {
+        border: 3px solid #ddd;
+        border-radius: 5px;
+        outline: none;
+        padding-left: 4px;
+	padding-right: 4px;
+}
 .textbox {
 	font-family: 'Courer New';
 	font-size: 20px;
 	height: 32px;
-	padding-left: 4px;
-	padding-right: 4px;
-	border-radius: 5px;
-	border: 3px solid #ccc;
-        transition: 2s;
-}
-input[type=text]:focus {
-    border: 3px solid #555;
-    outline: none;
 }
 .textbox.big { width: 384px; }
 .textbox.autorization { width: 296px; }
@@ -132,8 +126,10 @@ input[type=text]:focus {
 .textbox.object_location { width: 504px; }
 
 .textarea {
-	border-radius: 5px;
-	border: 1px solid #ccc;
+	border-radius: 2px;
+        padding-top: 4px;
+        padding-bottom: 60px;
+        resize: none;
 }
 .textarea.big {
         width: 384px;
@@ -146,7 +142,6 @@ input[type=text]:focus {
 .textarea.object_description {
 	font-size: 16px;
 	height: 128px;
-	resize: none;
 	width: 512px;
 }
 
@@ -159,14 +154,11 @@ input[type=text]:focus {
 }
 
 .table { border-spacing: 0; }
-.table_header_name{ width: 96px; }
-.table_header_location{ width: 216px; }
-.table_catalog tr {
-	background-color: red;
+.table tr {
+        background-color: #f2f2f2;
 }
 .table tr:hover {
-	color: red;
-	background-color: green;
+	background-color: #ccffb3;
 }
 .table th, .table td {
 	padding-left: 16px;
@@ -178,15 +170,17 @@ input[type=text]:focus {
 	font-family: 'Verdana';
 	font-size: 16px;
 	font-weight: bold;
-	text-align: left;
 	padding-top: 5px;
 	padding-bottom: 10px;
+        text-align: left;
 }
 .table td {
-	background-color: #f2f2f2;
 	font-size: 18px;
 	padding-top: 8px;
 	padding-bottom: 8px;
 	vertical-align: top;
 	border-bottom: 1px solid #a1a1a1;
 }
+.table .td_edit { width: 10%;}
+.table .td_name { width: 10%;}
+.table .td_location { width: 20%; }

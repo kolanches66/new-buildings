@@ -13,7 +13,7 @@ if (!empty($_SESSION['login'])) {
             // если задан id записи
             if (!empty($_GET['id'])) {
                 $id = $_GET['id'];
-                $query = "DELETE from buildings WHERE id=?";
+                $query = "DELETE from users WHERE id=?";
                 // выполняем запрос
                 if ($stmtDelete = $mysqli->prepare($query)) {
                     $stmtDelete->bind_param("i",  $id);
@@ -55,24 +55,28 @@ if (!empty($_SESSION['login'])) {
                 </button>
             </p>
             <?php
-            $query = 'SELECT * from `buildings`';
+            $query = 'SELECT * from `users`';
             if ($result = $mysqli->query($query)) {
                     echo "<table class='table'>
                     <tr>
                     <th></th>
-                    <th>Название</th>
-                    <th>Район\область\регион</th>
-                    <th>Описание</th>
+                    <th>Логин</th>
+                    <th>Имя</th>
+                    <th>Фамилия</th>
+					<th>Время регистрации</th>
+					<th>Тип пользователя</th>
                     </tr>";
                     while ($row = $result->fetch_assoc()) {
                             echo "<tr>
-                            <td class='td_edit'>
+                            <td class='table_id'>
                                 <a class='link' href='edit.php?id=".$row['id']."'>редактировать</a><br>
                                 <a class='link' href='index.php?action=delete&id=".$row['id']."'>удалить</a>
                             </td>
-                            <td class='td_name'>".$row['name']."</td>
-                            <td class='td_location'>".$row['location']."</td>
-                            <td class='td_description'>".nl2br($row['short_description'])."</td>
+                            <td class='login'>".$row['login']."</td>
+                            <td class='first_name'>".$row['first_name']."</td>
+                            <td class='last_name'>".$row['last_name']."</td>
+							<td class='datetime'>".$row['datetime']."</td>
+							<td class='type'>".$row['type']."</td>
                             </tr>";
                     }
                     echo "</table></div></div>"

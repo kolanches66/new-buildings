@@ -5,19 +5,25 @@ if (!empty($_SESSION['login'])) {
     include($_SERVER["DOCUMENT_ROOT"].'/new_buildings/db_connect.php');
     if (db_connect()) {
         // БЛОК ОБРАБОТКИ
-            // выполняем добавление данных в БД, если нажали кнопку
-            if (isset($_POST['submit'])) {
-                    $query = "INSERT INTO buildings (name, short_description, description) VALUES(?, ?, ?)";
-                    $name = $_POST['name'];
-                    $short_description = $_POST['short_description'];
-                    $description = $_POST['description'];
-                    if ($stmtUpdate = $mysqli->prepare($query)) {
-                            $stmtUpdate->bind_param("sss", $name, $short_description, $description);
-                            $stmtUpdate->execute();
-                            echo $stmtUpdate->error;
-                            $stmtUpdate->close();
-                    }
+        // выполняем добавление данных в БД, если нажали кнопку
+        if (isset($_POST['submit'])) {
+            $query = "INSERT INTO buildings (name, short_description, description) VALUES(?, ?, ?)";
+            $name = $_POST['name'];
+            $short_description = $_POST['short_description'];
+            $description = $_POST['description'];
+            if ($stmtUpdate = $mysqli->prepare($query)) {
+                $stmtUpdate->bind_param("sss", $name, $short_description, $description);
+                $stmtUpdate->execute();
+                echo $stmtUpdate->error;
+                $stmtUpdate->close();
+                header("Location: index.php");
             }
+            // если запрос не удался
+                else {
+                    header("refresh: 3; url=index.php");
+                    echo 'Не получилось изменить запись.';
+                }
+        }
 
             // БЛОК ИНТЕРФЕЙСА
             ?>
@@ -30,7 +36,7 @@ if (!empty($_SESSION['login'])) {
             </head>
             <body>
 
-            <div id="content_pre">
+            <div id="top-wrapper">
                 <?php 
                 // строим меню
                 require_once('parts/menu.php'); 
@@ -38,8 +44,9 @@ if (!empty($_SESSION['login'])) {
                 ?>
             </div>
 
-            <div id="content">
+			<div id='main-wrapper'>
                 <h1 class="header">Добавить объект</h1>
+				<div id="content">
                 <form action='' method='POST'>
                         <p class='p_form'><label for='id'>Название объекта</label></br>
                         <input class='textbox big' type='text' name='name' value=''></p>
@@ -52,7 +59,7 @@ if (!empty($_SESSION['login'])) {
 
                         <p class='p_form'><button class="button green" name='submit' type='submit'>Добавить</button></p>
                 </form>
-            </div>
+            </div></div>
             </body>
             </html>
     <?php
