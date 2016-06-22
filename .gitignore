@@ -1,9 +1,12 @@
-# ignore psd files,
+# ignore photoshop files,
 *.psd
 # ignore uploaded files
 /uploads/
 # ignore composer files
 /vendor/
-# ignore
-/trash/
-/nbproject/private/
+# ignore NetBeans project files
+/nbproject/
+# ignore useless experimental PHP files
+/sandbox/
+# ignore files with fonts
+/fonts/
