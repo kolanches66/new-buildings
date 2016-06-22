@@ -2,31 +2,51 @@
 session_start();
 // БЛОК ОБРАБОТКИ
 // осуществляем проверку данных для авторизации
-if (isset($_POST['btn_enter']) && empty($_SESSION['login'])) {
-    // если юзер ввёл не все данные
+// если нажал кнопку для входа и ещё не авторизваон
+if (isset($_POST['btnEnter']) && empty($_SESSION['login'])) {
+    // если ввёл не все данные
     if (empty($_POST['login']) || empty($_POST['password'])) {
         $message_type = "info";
         $message_text = "Введите и логин, и пароль";
     }
     // или всё-таки ввёл все
-    else {
+    else 
+	{
         // проверяем их на правильность
-        $error = false;
-            // если они оказались правильными
-            if ($_POST['login'] == "login" && $_POST['password'] == "password") 
-            {
-		// то делаем пометку в сессии
-		$_SESSION['login'] = 'login';
-                // чтобы не было повторной отправки формы при F5
-                header("Location: index.php");
-            }
-            // а если неправильными, то -- ошибка
-            else {
-                $message_type = "error";
-                $message_text = "Ошибка! Логин или пароль введены неверно.";
-            }
-    }
-}
+		$login = $_POST['login'];
+		$pass = $_POST['password'];
+		require '../db_connect.php';
+		// подключение к базе
+		if (db_connect()) {
+			$query = "SELECT * FROM `users` WHERE login=? AND pass_hash=? LIMIT 1";
+			if ($stmt = $mysqli->prepare($query)) 
+			{
+				$stmt->bind_param("ss", $login, $pass);
+				$stmt->execute();
+				$result = $stmt->get_result();
+				//$num_of_rows = $result->num_rows;
+				// если такая запись нашлась
+				if ($result->num_rows == 1) 
+				{
+					// делаем пометку в сессии
+					$_SESSION['login'] = 'login';
+					// чтобы не было повторной отправки формы при F5
+					header("Location: index.php");
+				}
+				// а если такой записи нет, то ЯК, -- ошибка
+				else {
+					$message_type = "error";
+					$message_text = "Ошибка! Логин или пароль введены неверно.";
+				}
+			}  //  end of if ($stmt = $mysqli->prepare($query))
+			// а если такой записи нет, то ЯК, -- ошибка
+			else {
+				$message_type = "error";
+				$message_text = "Ошибка запроса к БД";
+			}
+		}  //  end of if (db_connect())
+	}  // конец: если ввёл все данные
+}  //  if (isset($_POST['btnEnter']) && empty($_SESSION['login']))
 ?>
 
 <!DOCTYPE html>
@@ -43,7 +63,7 @@ if (isset($_POST['btn_enter']) && empty($_SESSION['login'])) {
 // то только по одной причине
 if (!empty($_SESSION['login'])) {
     // он уходит...
-    // ...отпускаем это бедное животное на волю
+    // ...отпускаем это бедное животное на волю, если оно желает
     if (isset($_GET['action']) && $_GET['action'] == "logout") {
 	// уничтожаем сессию
 	session_unset ($_SESSION['login']);
@@ -53,27 +73,6 @@ if (!empty($_SESSION['login'])) {
     // то наглым образом выпинываем его,
     // ибо проходимцы нам тут не нужны
     header("Location: index.php");
-    // если он решил выйти
-    /*if (isset($_GET['action']) && $_GET['action'] == "logout") {
-	// уничтожаем нашу сессию
-	session_unset ($_SESSION['login']);
-        header("Location: index.php");
-    } 
-    // отображаем интерфейс авторизованного пользователя
-    ?>
-    <div id="content_pre">
-        <?php require $_SERVER["DOCUMENT_ROOT"].'/new_buildings/parts/menu.php'; ?>
-    </div>
-    
-    <div id="content">
-        <a href='index.php?action=logout'>Выход</a>
-    </div>
-    
-    <?php
-    include('../db_connect.php');
-    if (db_connect()) {
-        <?php require $_SERVER["DOCUMENT_ROOT"].'/new_buildings/parts/menu.php'; ?>
-    }*/
 }
 
 // а если не зашёл, то
@@ -95,7 +94,7 @@ else {  ?>
 			<input class="textbox big" name="password" type="password"></p>
 			
             <p class="p_form">
-			<button class="button green" name="btn_enter" type="submit">Войти</button>
+			<button class="button green" name="btnEnter" type="submit">Войти</button>
 			</p>
         </form>
     </div>

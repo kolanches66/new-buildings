@@ -1,4 +1,4 @@
-﻿* {
+* {
 	background-color: transparent;
 	margin: 0;
 	padding: 0;
@@ -6,9 +6,8 @@
 
 body {
 	background-color: #fafafa;
-	background-position: right top;
-	background-repeat: no-repeat;
-	font-family: Times New Roman;
+	color: #111;
+	font-family: 'Candara', 'Times New Roman';
 }
 
 .message {
@@ -61,7 +60,10 @@ body {
 #content.autorization {
 	width: 400px;
 }
-
+.content-block {
+	display: block;
+	width: 500px;
+}
 .header {
 	margin-bottom: 16px;
 	padding: 4px 32px;
